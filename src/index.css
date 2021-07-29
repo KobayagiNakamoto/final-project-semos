@@ -112,3 +112,19 @@ body,
 .modal-size {
   max-width: 1027px;
 }
+
+.text-green {
+  color: #96bb36;
+}
+
+.text-orange {
+  color: #f0972a;
+}
+
+a {
+  text-decoration: none;
+}
+
+.pointer {
+  cursor: pointer;
+}

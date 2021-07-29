@@ -9,6 +9,7 @@ import { Register } from "./pages/Register";
 
 export function App() {
   const [modalShow, setModalShow] = useState(false);
+  const [user, setUser] = useState(localStorage.getItem("token") || "");
   const blur = modalShow ? "blur" : "";
   return (
     <Router>
@@ -17,19 +18,19 @@ export function App() {
         className={`${blur} d-flex flex-column align-items-center justify-content-between`}
       >
         <div>
-          <Navbar />
+          <Navbar user={user} setUser={setUser} />
           <Switch>
             <Route path="/login">
-              <Login />
+              <Login user={user} setUser={setUser} />
             </Route>
             <Route path="/register">
               <Register />
             </Route>
             <Route path="/myprofile">
-              <MyProfile />
+              <MyProfile user={user} />
             </Route>
             <Route path="/myrecipes">
-              <MyRecipes />
+              <MyRecipes user={user} />
             </Route>
             <Route path="/">
               <Main modalShow={modalShow} setModalShow={setModalShow} />

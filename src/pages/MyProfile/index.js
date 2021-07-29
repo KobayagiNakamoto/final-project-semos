@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { TitleDivider } from "../../components/TitleDivider";
 
-export function MyProfile() {
+export function MyProfile({ user }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -15,6 +16,16 @@ export function MyProfile() {
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
   const handleRepeatPassword = (e) => setRepeatPassword(e.target.value);
+
+  const history = useHistory();
+  // if logged in, cannot navigate to log in page
+  useEffect(() => {
+    if (!user) {
+      history.push("/login");
+    }
+    // eslint-disable-next-line
+  }, [user]);
+
   return (
     <div style={{ width: "1000px" }}>
       <TitleDivider text="My Profile" />

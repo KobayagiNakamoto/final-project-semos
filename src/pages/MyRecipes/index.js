@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { TitleDivider } from "../../components/TitleDivider";
 
 const data = [
@@ -38,7 +40,15 @@ const data = [
   },
 ];
 
-export function MyRecipes() {
+export function MyRecipes({ user }) {
+  const history = useHistory();
+  // if logged in, cannot navigate to log in page
+  useEffect(() => {
+    if (!user) {
+      history.push("/login");
+    }
+    // eslint-disable-next-line
+  }, [user]);
   return (
     <div style={{ width: "1000px" }}>
       <TitleDivider text="My Recipes" />
